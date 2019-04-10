@@ -508,7 +508,10 @@ export default class InternalModel {
       let internalModel =
         resource && resource.data ? store._internalModelForResource(resource.data) : null;
       return PromiseBelongsTo.create({
-        _belongsToState: resource._relationship,
+        key,
+        modelName: relationshipMeta.type,
+        store,
+        originatingInternalModel: this,
         promise: store._findBelongsToByJsonApiResource(
           resource,
           parentInternalModel,
